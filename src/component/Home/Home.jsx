@@ -6,12 +6,11 @@ const Home = () => {
             <div className="container ">
                 <h1 className="text-center bg-primary bg-gradient">Notice here</h1>
                 <div className="mt-4 ">
-                <h1 className="text-bold fs-2 ">Request testnet LINK</h1>
-                <h1 className="text-sm fs-5">Get testnet LINK for an account on one of the supported blockchain testnets so you can create and test your own oracle and Chainlinked smart contract</h1>
-
+                    <h1 className="text-bold fs-2 ">Request testnet LINK</h1>
+                    <h1 className="text-sm fs-5 w-60">Get testnet LINK for an account on one of the supported blockchain testnets so you can create and test your own oracle and Chainlinked smart contract</h1>
                 </div>
                 <div className="row mt-5">
-                    <div className="col-md-6 offset-md-3">
+                    <div className="col-md-6 offset-md-0">
                         <form>
                             <div className="mb-3">
                                 <label htmlFor="exampleInputEmail1" className="form-label">Wallet Address</label>
@@ -38,7 +37,7 @@ const Home = () => {
                 </div>
 
                 <div className="row mt-4">
-                    <div className="col-md-8 offset-md-2">
+                    <div className="col-md-8 offset-md-0">
                         <h3>Request History</h3>
                         <table className="table">
                             <thead>
