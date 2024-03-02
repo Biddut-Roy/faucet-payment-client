@@ -2,9 +2,9 @@
 
 const Home = () => {
     return (
-        <div className="min-vh-100 d-flex mt-1">
+        <div className="min-vh-100 d-flex mt-1 " style={{ backgroundColor: '#EEF2FE' }}>
             <div className="container ">
-                <h1 className="text-center bg-primary bg-gradient">Notice here</h1>
+                <h1 className="text-center fs-3 py-3" style={{ backgroundColor: '#9B1FE9' }}>Notice here</h1>
                 <div className="mt-4 ">
                     <h1 className="text-bold fs-2 ">Request testnet LINK</h1>
                     <h1 className="text-sm fs-5 w-60">Get testnet LINK for an account on one of the supported blockchain testnets so you can create and test your own oracle and Chainlinked smart contract</h1>
@@ -13,11 +13,11 @@ const Home = () => {
                     <div className="col-md-6 offset-md-0">
                         <form>
                             <div className="mb-3">
-                                <label htmlFor="exampleInputEmail1" className="form-label">Wallet Address</label>
+                                <label htmlFor="exampleInputEmail1" className="form-label" style={{ color: '#9B1FE9' }}>Wallet Address</label>
                                 <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="exampleInputPassword1" className="form-label">Request Type</label>
+                                <label htmlFor="exampleInputPassword1" className="form-label" style={{ color: '#9B1FE9' }}>Request Type</label>
                                 <div className="row">
                                     <div className="col">
                                         <input type="text" className="form-control" placeholder="20 Test Link" aria-label="20 Test Link" />
@@ -31,7 +31,7 @@ const Home = () => {
                                 <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                                 <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
                             </div>
-                            <button type="submit" className="btn btn-primary">Send Request</button>
+                            <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#9B1FE9' }}>Send Request</button>
                         </form>
                     </div>
                 </div>

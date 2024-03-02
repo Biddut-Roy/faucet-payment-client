@@ -23,7 +23,7 @@ const Navbar = () => {
                                 </ul>
                             </li>
                             <li className="nav-item">
-                                <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                <button type="button" className="btn btn-primary" style={{ backgroundColor: '#9B1FE9' }} data-toggle="modal" data-target="#exampleModalCenter">
                                     Connect Wallet
                                 </button>
                             </li>

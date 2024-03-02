@@ -2,7 +2,7 @@
 
 const Faq = () => {
     return (
-        <div className="container">
+        <div className="container min-vh-100">
             <h1 className="text-center m-4">Frequently Asked Questions</h1>
             <div className="row justify-content-center col-8 mx-auto my-auto">
                 <div id="accordion">
