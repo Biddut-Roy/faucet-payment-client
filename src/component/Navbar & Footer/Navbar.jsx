@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
+    const { loginWithRedirect, user } = useAuth0();
     return (
         <div className="border w-90 mx-auto">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,8 +36,10 @@ const Navbar = () => {
                                     </svg>
                                 </button>
                                 <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <button onClick={() => loginWithRedirect()} className="dropdown-item">Sign in</button>
+                                    </li>
+                                    <li><button className="dropdown-item">Sign up</button></li>
                                     <li><h1 className="dropdown-divider" /></li>
                                     <li>
                                         <Link to={"FAQ"} className="dropdown-item">FAQ</Link>
