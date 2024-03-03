@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import metaImage from './../../../public/Meta.png'
 import wala from './../../../public/walate.png'
+import { useState } from "react";
 
 const Navbar = () => {
     const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
+    const [wallet , setWallet] = useState("Ethereum Rinkeby");
     return (
         <div className="border w-90 mx-auto">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -16,13 +18,18 @@ const Navbar = () => {
                         <ul className="d-flex list-unstyled align-items-center justify-content-center">
                             <li className="nav-item dropdown m-2">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Fantom Testnet
+                                   {wallet}
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
+                                    <li><a className="dropdown-item" onClick={()=>setWallet("Ethereum Rinkeby")}>Ethereum Rinkeby</a></li>
+                                    <li><a className="dropdown-item" onClick={()=>setWallet("Polygon Mumbai")}>Polygon Mumbai</a></li>
+                                    <li><a className="dropdown-item" onClick={()=>setWallet("POA Network Sokol")}>POA Network Sokol</a></li>
+                                    <li><a className="dropdown-item" onClick={()=>setWallet("Harmony Testnet")}>Harmony Testnet</a></li>
+                                    <li><a className="dropdown-item" onClick={()=>setWallet("Fantom Testnet")}>Fantom Testnet</a></li>
+                                    <li><a className="dropdown-item" onClick={()=>setWallet("BNB Chain Testnet")}>BNB Chain Testnet</a></li>
+                                    <li><a className="dropdown-item" onClick={()=>setWallet("Avalanche Fuji")}>Avalanche Fuji</a></li>
+                                    <li><a className="dropdown-item" onClick={()=>setWallet("Arbitrum Rinkeby")}>Arbitrum Rinkeby</a></li>
                                     <li><h1 className="dropdown-divider" /></li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </li>
                             <li className="nav-item">

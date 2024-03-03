@@ -12,7 +12,7 @@ const Header = ({OpenSidebar}) => {
             <BsJustify className='icon' onClick={OpenSidebar}/>
         </div>
         <div className='header-left'>
-           <Link to={'/'} style={{textDecoration:'none'}}> Fuacet </Link>
+           <Link to={'/'} style={{textDecoration:'none', color:'#9B1FE9'}}>Faucets</Link>
         </div>
         <div className='header-right'>
             <BsPersonCircle className='icon'/>
