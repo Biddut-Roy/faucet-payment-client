@@ -1,8 +1,9 @@
 import 
- {BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsSearch, BsJustify}
+ {BsPersonCircle,  BsJustify}
  from 'react-icons/bs'
  import PropTypes from 'prop-types';
- 
+import { Link } from 'react-router-dom';
+
 const Header = ({OpenSidebar}) => {
     return (
         <div>
@@ -11,11 +12,9 @@ const Header = ({OpenSidebar}) => {
             <BsJustify className='icon' onClick={OpenSidebar}/>
         </div>
         <div className='header-left'>
-            <BsSearch  className='icon'/>
+           <Link to={'/'} style={{textDecoration:'none'}}> Fuacet </Link>
         </div>
         <div className='header-right'>
-            <BsFillBellFill className='icon'/>
-            <BsFillEnvelopeFill className='icon'/>
             <BsPersonCircle className='icon'/>
         </div>
     </header>
@@ -24,7 +23,7 @@ const Header = ({OpenSidebar}) => {
 };
 
 Header.propTypes = {
-    openSidebar: PropTypes.func.isRequired,
+    OpenSidebar: PropTypes.func.isRequired,
   };
 
 export default Header;
