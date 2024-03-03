@@ -4,8 +4,7 @@ import metaImage from './../../../public/Meta.png'
 import wala from './../../../public/walate.png'
 
 const Navbar = () => {
-    const { loginWithRedirect, user, isAuthenticated, logout } = useAuth0();
-    console.log(user);
+    const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
     return (
         <div className="border w-90 mx-auto">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -47,11 +46,11 @@ const Navbar = () => {
                                         }
                                     </li>
                                     <li><button className="dropdown-item" onClick={() => loginWithRedirect(
-                                    {
-                                        authorizationParams:{
-                                            screen_hint:'signup'
+                                        {
+                                            authorizationParams: {
+                                                screen_hint: 'signup'
+                                            }
                                         }
-                                    }
                                     )} >Sign Up</button></li>
                                     <li><h1 className="dropdown-divider" /></li>
                                     <li>
