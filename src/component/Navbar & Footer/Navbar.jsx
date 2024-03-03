@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import metaImage from './../../../public/Meta.png'
+import wala from './../../../public/walate.png'
 
 const Navbar = () => {
-    const { loginWithRedirect, user , isAuthenticated , logout} = useAuth0();
+    const { loginWithRedirect, user, isAuthenticated, logout } = useAuth0();
     console.log(user);
     return (
         <div className="border w-90 mx-auto">
@@ -38,13 +40,19 @@ const Navbar = () => {
                                 </button>
                                 <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                                     <li>
-                                       {
-                                        isAuthenticated ? <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className="dropdown-item">Logout</button>
-                                        :
-                                        <button onClick={() => loginWithRedirect()} className="dropdown-item">Sign in</button>
-                                       }
+                                        {
+                                            isAuthenticated ? <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className="dropdown-item">Logout</button>
+                                                :
+                                                <button onClick={() => loginWithRedirect()} className="dropdown-item">Sign in</button>
+                                        }
                                     </li>
-                                    <li><button className="dropdown-item">Sign up</button></li>
+                                    <li><button className="dropdown-item" onClick={() => loginWithRedirect(
+                                    {
+                                        authorizationParams:{
+                                            screen_hint:'signup'
+                                        }
+                                    }
+                                    )} >Sign Up</button></li>
                                     <li><h1 className="dropdown-divider" /></li>
                                     <li>
                                         <Link to={"FAQ"} className="dropdown-item">FAQ</Link>
@@ -59,19 +67,21 @@ const Navbar = () => {
                 <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLongTitle">Fantom Testnet</h5>
+                            <div className="modal-header d-flex justify-content-between">
+                                <h5 className="modal-title" id="exampleModalLongTitle">Connect your wallet</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div className="modal-body">
-                                {/* Modal body content */}
+                            <div className="modal-body d-flex justify-content-center">
+                                <div style={{ height: '150px', width: '150px' }}>
+                                    <img style={{ height: '150px', width: '150px' }} src={metaImage} alt="img" />
+                                </div>
+                                <div style={{ height: '150px', width: '150px' }}>
+                                    <img className="img-thumbnail" style={{ height: '150px', width: '150px' }} src={wala} alt="img" />
+                                </div>
                             </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" className="btn btn-primary">Connect </button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
