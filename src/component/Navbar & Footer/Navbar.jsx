@@ -38,6 +38,20 @@ const Navbar = () => {
                                     </svg>
                                 </button>
                                 <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                                <li>
+                                        {
+                                            isAuthenticated ? 
+                                            <Link to={"/Dashboard"}><button>Dashbord</button> </Link>
+                                            :
+                                            <button className="dropdown-item" onClick={() => loginWithRedirect(
+                                                {
+                                                    authorizationParams: {
+                                                        screen_hint: 'signup'
+                                                    }
+                                                }
+                                            )} >Sign Up</button>
+                                        }
+                                        </li>
                                     <li>
                                         {
                                             isAuthenticated ? <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className="dropdown-item">Logout</button>
@@ -45,13 +59,7 @@ const Navbar = () => {
                                                 <button onClick={() => loginWithRedirect()} className="dropdown-item">Sign in</button>
                                         }
                                     </li>
-                                    <li><button className="dropdown-item" onClick={() => loginWithRedirect(
-                                        {
-                                            authorizationParams: {
-                                                screen_hint: 'signup'
-                                            }
-                                        }
-                                    )} >Sign Up</button></li>
+                                   
                                     <li><h1 className="dropdown-divider" /></li>
                                     <li>
                                         <Link to={"FAQ"} className="dropdown-item">FAQ</Link>

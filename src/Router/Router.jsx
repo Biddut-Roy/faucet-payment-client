@@ -5,6 +5,7 @@ import Test from "../component/Test";
 import Faq from "../component/FAQ/Faq";
 import Eth from "../component/Home/TS-HIstory/Eth";
 import TestHistory from "../component/Home/TS-HIstory/TestHistory";
+import Dashboard from "../Layout/Dashboard/Dashboard";
 
 
 
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
                         element: <TestHistory />,
                     },
                 ]
-               
+
             },
             {
                 path: "/FAQ",
@@ -38,6 +39,18 @@ const router = createBrowserRouter([
             },
         ],
     },
+    // ? start a Dashboard Route
+    {
+        path: "/Dashboard",
+        element: <Dashboard />,
+        children: [
+            {
+                path: "/Dashboard/User",
+                element: <Eth />,
+            },
+           
+        ]
+    }
 ]);
 
 
