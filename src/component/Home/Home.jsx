@@ -1,6 +1,13 @@
+import ReCAPTCHA from "react-google-recaptcha";
+import { NavLink, Outlet } from "react-router-dom";
+import "./home.css"
 
 
 const Home = () => {
+    function onChange(value) {
+        console.log("Captcha value:", value);
+    }
+
     return (
         <div className="min-vh-100 d-flex mt-1 " style={{ backgroundColor: '#EEF2FE' }}>
             <div className="container ">
@@ -27,10 +34,10 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="mb-3 form-check">
-                                <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-                            </div>
+                            <ReCAPTCHA
+                                sitekey="6LeB-4cpAAAAAAdechqyonlgBavNWwQMnIb0XsB4"
+                                onChange={onChange}
+                            />
                             <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#9B1FE9' }}>Send Request</button>
                         </form>
                     </div>
@@ -39,26 +46,11 @@ const Home = () => {
                 <div className="row mt-4">
                     <div className="col-md-8 offset-md-0">
                         <h3>Request History</h3>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Transaction Hash</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>2024-03-02 14:30:00</td>
-                                    <td>0.1 LINK</td>
-                                    <td>0x123456789abcdef</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
+                        <div className="d.flex m-4" >
+                            <NavLink  to={"/ETH"} className="fs-6 mx-5 p-2 rounded" style={{ textDecoration: 'none' }}>ETH Transaction History</NavLink >
+                            <NavLink to={"/TestH"} className="fs-6 p-2 rounded" style={{ textDecoration: 'none' }}>TestLink Transaction History</NavLink>
+                        </div>
+                        <Outlet />
                     </div>
                 </div>
             </div>

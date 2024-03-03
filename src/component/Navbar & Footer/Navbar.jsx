@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
-    const { loginWithRedirect, user } = useAuth0();
+    const { loginWithRedirect, user , isAuthenticated , logout} = useAuth0();
+    console.log(user);
     return (
         <div className="border w-90 mx-auto">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container d-flex justify-content-batwing">
                     <div>
-                        <a className="navbar-brand border" href="#">Faucets</a>
+                        <Link to={"/"} className="navbar-brand border">Faucets</Link>
                     </div>
                     <div className="mt-3">
                         <ul className="d-flex list-unstyled align-items-center justify-content-center">
@@ -37,7 +38,11 @@ const Navbar = () => {
                                 </button>
                                 <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
                                     <li>
+                                       {
+                                        isAuthenticated ? <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className="dropdown-item">Logout</button>
+                                        :
                                         <button onClick={() => loginWithRedirect()} className="dropdown-item">Sign in</button>
+                                       }
                                     </li>
                                     <li><button className="dropdown-item">Sign up</button></li>
                                     <li><h1 className="dropdown-divider" /></li>
