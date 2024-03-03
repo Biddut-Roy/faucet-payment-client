@@ -20,7 +20,7 @@ const Home = () => {
                 const address = event.target.address.value;
                 const type = event.target.type.value;
                 const amount = event.target.amount.value;
-                console.log('Form submitted!', address);
+                console.log('Form submitted!', address , type , amount);
             } else {
               console.log('Please verify reCAPTCHA before submitting.');
             }

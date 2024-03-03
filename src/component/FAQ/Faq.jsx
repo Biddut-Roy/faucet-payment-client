@@ -1,6 +1,9 @@
+import usePublicAxios from "../../Hooks/usePublicAxios";
 
 
 const Faq = () => {
+    const publicAxios = usePublicAxios();
+    
     return (
         <div className="container min-vh-100">
             <h1 className="text-center m-4">Frequently Asked Questions</h1>
