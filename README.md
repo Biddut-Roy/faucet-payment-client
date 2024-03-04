@@ -4,6 +4,9 @@
 ## Used Technology :
 - React/bootstrap/javascript/Html/CSS/Auth0/Google-recaptcha
 
+## Start server:
+- npm run dev
+
 
 
 
