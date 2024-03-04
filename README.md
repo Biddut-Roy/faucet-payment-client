@@ -5,6 +5,7 @@
 - React/bootstrap/javascript/Html/CSS/Auth0/Google-recaptcha
 
 ## Start server:
+- npm i
 - npm run dev
 
 
