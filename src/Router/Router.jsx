@@ -8,6 +8,7 @@ import TestHistory from "../component/Home/TS-HIstory/TestHistory";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import Error from "../component/Errorpage/Error";
 import UserDetails from "../Layout/Dashboard/UserDetails/UserDetails";
+import AdminRoute from "./AdminRoute";
 
 
 
@@ -46,12 +47,12 @@ const router = createBrowserRouter([
     // ? start a Dashboard Route
     {
         path: "/Dashboard",
-        element: <Dashboard />,
+        element:<AdminRoute> <Dashboard /></AdminRoute>,
         errorElement: <Error />,
         children: [
             {
                 path: "/Dashboard/User",
-                element: <UserDetails/>,
+                element: <AdminRoute><UserDetails/></AdminRoute>,
             },
            
         ]

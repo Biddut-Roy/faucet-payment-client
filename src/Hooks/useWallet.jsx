@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/GlobalAuth";
 
 
 const useWallet = () => {
-    const [wallet , setWallet] = useState("Ethereum Rinkeby");
-    return [wallet, setWallet];
+   const Wallat = useContext(AuthContext)
+   return Wallat;
 };
 
 export default useWallet;

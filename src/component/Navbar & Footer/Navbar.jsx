@@ -7,25 +7,43 @@ import usePublicAxios from "../../Hooks/usePublicAxios";
 import useAdmin from "../../Hooks/useAdmin";
 
 
+
 const Navbar = () => {
     const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
     const publicAxios = usePublicAxios();
-    const [wallet, setWallet] = useWallet()
+    const {wallet, setWallet} = useWallet()
     const [isAdmin] = useAdmin()
 
+
+
     if (isAuthenticated) {
+        const logger = { email: user?.email }
         const userData = {
             name: user?.name,
             email: user?.email
         }
+        publicAxios.post('http://localhost:5000/jwt', logger)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+        
         publicAxios.post('api/v1/user', userData)
             .then(res => {
                 if (res.data?.acknowledged) {
                     alert("data insert Successes")
-                    console.log(res.data);
                 }
             })
+           
+    } else{
+        publicAxios.post('http://localhost:5000/logout', { withCredentials: true })
+        .then(res => {
+            console.log(res.data);
+        })
     }
+
 
     return (
         <div className="border w-90 mx-auto">
@@ -71,7 +89,7 @@ const Navbar = () => {
                                                 isAdmin?.isAdmin ?
                                                     <Link to={"/Dashboard"}><button>Dashboard</button> </Link>
                                                     :
-                                                    <button>test</button>
+                                                    ""
                                                 :
                                                 <button className="dropdown-item" onClick={() => loginWithRedirect(
                                                     {

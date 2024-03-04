@@ -12,7 +12,9 @@ const Home = () => {
     const [isVerified, setVerified] = useState(false);
     const publicAxios = usePublicAxios();
     const [currentDateTime, setCurrentDateTime] = useState(new Date());
-    const [wallet] = useWallet()
+    const {wallet} = useWallet()
+
+    // Current time and date
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentDateTime(new Date());
@@ -39,7 +41,6 @@ const Home = () => {
                 email: user?.email,
                 date_time: currentDateTime?.toLocaleString(),
             }
-            console.log(RequestData);
             publicAxios.post('api/v1/Transactions', RequestData)
                 .then(res => {
                     if (res.data?.acknowledged) {

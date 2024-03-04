@@ -1,6 +1,25 @@
+import { useQuery } from "@tanstack/react-query";
+import usePublicAxios from "../../../Hooks/usePublicAxios";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const TestHistory = () => {
+    const { user, isAuthenticated } = useAuth0();
+    const publicAxios = usePublicAxios();
+
+
+    const { isPending, error, refetch, data } = useQuery({
+        queryKey: ['TsHistory'],
+        queryFn: async () => {
+            const res = await publicAxios.get(`api/v1/Transactions/${user.email}`)
+            return res.data
+        }
+    })
+    if (isPending) return 'Loading...'
+    if (error) return 'An error has occurred: ' + error.message
+    refetch()
+    const testData = data.filter((item) => item.type === "test");
+
     return (
         <div>
             <table className="table">
@@ -13,14 +32,22 @@ const TestHistory = () => {
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>2024-03-02 14:30:00</td>
-                        <td>0.1 LINK</td>
-                        <td>0x123456789abcdef</td>
-                    </tr>
-
+                    {
+                        isAuthenticated ?
+                        testData.map((item, idx) => <tr key={item._id}>
+                            <th scope="row">{idx + 1}</th>
+                            <td>{item.date_time}</td>
+                            <td>{item.amount} LINK</td>
+                            <td>{item.hash}</td>
+                        </tr>)
+                        :
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td>0. LINK</td>
+                            <td></td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
