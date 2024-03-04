@@ -6,6 +6,8 @@ import Faq from "../component/FAQ/Faq";
 import Eth from "../component/Home/TS-HIstory/Eth";
 import TestHistory from "../component/Home/TS-HIstory/TestHistory";
 import Dashboard from "../Layout/Dashboard/Dashboard";
+import Error from "../component/Errorpage/Error";
+import UserDetails from "../Layout/Dashboard/UserDetails/UserDetails";
 
 
 
@@ -13,10 +15,12 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <MainPage />,
+        errorElement: <Error />,
         children: [
             {
                 path: "/",
                 element: <Home />,
+                errorElement: <Error />,
                 children: [
                     {
                         path: "/ETH",
@@ -43,10 +47,11 @@ const router = createBrowserRouter([
     {
         path: "/Dashboard",
         element: <Dashboard />,
+        errorElement: <Error />,
         children: [
             {
                 path: "/Dashboard/User",
-                element: <Eth />,
+                element: <UserDetails/>,
             },
            
         ]

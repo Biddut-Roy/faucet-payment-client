@@ -2,11 +2,31 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import metaImage from './../../../public/Meta.png'
 import wala from './../../../public/walate.png'
-import { useState } from "react";
+import useWallet from "../../Hooks/useWallet";
+import usePublicAxios from "../../Hooks/usePublicAxios";
+import useAdmin from "../../Hooks/useAdmin";
+
 
 const Navbar = () => {
-    const { loginWithRedirect, isAuthenticated, logout } = useAuth0();
-    const [wallet , setWallet] = useState("Ethereum Rinkeby");
+    const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
+    const publicAxios = usePublicAxios();
+    const [wallet, setWallet] = useWallet()
+    const [isAdmin] = useAdmin()
+
+    if (isAuthenticated) {
+        const userData = {
+            name: user?.name,
+            email: user?.email
+        }
+        publicAxios.post('api/v1/user', userData)
+            .then(res => {
+                if (res.data?.acknowledged) {
+                    alert("data insert Successes")
+                    console.log(res.data);
+                }
+            })
+    }
+
     return (
         <div className="border w-90 mx-auto">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,17 +38,17 @@ const Navbar = () => {
                         <ul className="d-flex list-unstyled align-items-center justify-content-center">
                             <li className="nav-item dropdown m-2">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                   {wallet}
+                                    {wallet}
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" onClick={()=>setWallet("Ethereum Rinkeby")}>Ethereum Rinkeby</a></li>
-                                    <li><a className="dropdown-item" onClick={()=>setWallet("Polygon Mumbai")}>Polygon Mumbai</a></li>
-                                    <li><a className="dropdown-item" onClick={()=>setWallet("POA Network Sokol")}>POA Network Sokol</a></li>
-                                    <li><a className="dropdown-item" onClick={()=>setWallet("Harmony Testnet")}>Harmony Testnet</a></li>
-                                    <li><a className="dropdown-item" onClick={()=>setWallet("Fantom Testnet")}>Fantom Testnet</a></li>
-                                    <li><a className="dropdown-item" onClick={()=>setWallet("BNB Chain Testnet")}>BNB Chain Testnet</a></li>
-                                    <li><a className="dropdown-item" onClick={()=>setWallet("Avalanche Fuji")}>Avalanche Fuji</a></li>
-                                    <li><a className="dropdown-item" onClick={()=>setWallet("Arbitrum Rinkeby")}>Arbitrum Rinkeby</a></li>
+                                    <li><a className="dropdown-item" onClick={() => setWallet("Ethereum Rinkeby")}>Ethereum Rinkeby</a></li>
+                                    <li><a className="dropdown-item" onClick={() => setWallet("Polygon Mumbai")}>Polygon Mumbai</a></li>
+                                    <li><a className="dropdown-item" onClick={() => setWallet("POA Network Sokol")}>POA Network Sokol</a></li>
+                                    <li><a className="dropdown-item" onClick={() => setWallet("Harmony Testnet")}>Harmony Testnet</a></li>
+                                    <li><a className="dropdown-item" onClick={() => setWallet("Fantom Testnet")}>Fantom Testnet</a></li>
+                                    <li><a className="dropdown-item" onClick={() => setWallet("BNB Chain Testnet")}>BNB Chain Testnet</a></li>
+                                    <li><a className="dropdown-item" onClick={() => setWallet("Avalanche Fuji")}>Avalanche Fuji</a></li>
+                                    <li><a className="dropdown-item" onClick={() => setWallet("Arbitrum Rinkeby")}>Arbitrum Rinkeby</a></li>
                                     <li><h1 className="dropdown-divider" /></li>
                                 </ul>
                             </li>
@@ -45,20 +65,25 @@ const Navbar = () => {
                                     </svg>
                                 </button>
                                 <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-                                <li>
+                                    <li>
                                         {
-                                            isAuthenticated ? 
-                                            <Link to={"/Dashboard"}><button>Dashbord</button> </Link>
-                                            :
-                                            <button className="dropdown-item" onClick={() => loginWithRedirect(
-                                                {
-                                                    authorizationParams: {
-                                                        screen_hint: 'signup'
+                                            isAuthenticated ?
+                                                isAdmin?.isAdmin ?
+                                                    <Link to={"/Dashboard"}><button>Dashboard</button> </Link>
+                                                    :
+                                                    <button>test</button>
+                                                :
+                                                <button className="dropdown-item" onClick={() => loginWithRedirect(
+                                                    {
+                                                        authorizationParams: {
+                                                            screen_hint: 'signup'
+                                                        }
                                                     }
-                                                }
-                                            )} >Sign Up</button>
+                                                )
+
+                                                } >Sign Up</button>
                                         }
-                                        </li>
+                                    </li>
                                     <li>
                                         {
                                             isAuthenticated ? <button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className="dropdown-item">Logout</button>
@@ -66,7 +91,7 @@ const Navbar = () => {
                                                 <button onClick={() => loginWithRedirect()} className="dropdown-item">Sign in</button>
                                         }
                                     </li>
-                                   
+
                                     <li><h1 className="dropdown-divider" /></li>
                                     <li>
                                         <Link to={"FAQ"} className="dropdown-item">FAQ</Link>

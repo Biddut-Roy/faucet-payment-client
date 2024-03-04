@@ -4,6 +4,7 @@ import "./home.css"
 import { useEffect, useState } from "react";
 import usePublicAxios from "../../Hooks/usePublicAxios";
 import { useAuth0 } from "@auth0/auth0-react";
+import useWallet from "../../Hooks/useWallet";
 
 
 const Home = () => {
@@ -11,7 +12,7 @@ const Home = () => {
     const [isVerified, setVerified] = useState(false);
     const publicAxios = usePublicAxios();
     const [currentDateTime, setCurrentDateTime] = useState(new Date());
-
+    const [wallet] = useWallet()
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentDateTime(new Date());
@@ -42,8 +43,7 @@ const Home = () => {
             publicAxios.post('api/v1/Transactions', RequestData)
                 .then(res => {
                     if (res.data?.acknowledged) {
-                        alert("data insert sucess")
-                        console.log(res.data);
+                        alert("data insert success")
                     }
                 })
         } else {
@@ -70,7 +70,7 @@ const Home = () => {
                                 <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                             </svg>
                         </p>
-                        <p className="m-3 text-black">Your wallet is connected to Polygon Mumbai, so you are requesting Polygon Mumbai Link/ETH.</p>
+                        <p className="m-3 text-black">Your wallet is connected to {wallet}, so you are requesting {wallet} Link/ETH.</p>
                     </div>
                     <div className="col-md-6 offset-md-0">
                         <form onSubmit={handleSubmit}>
