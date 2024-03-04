@@ -21,12 +21,12 @@ const Sidebar = ({ openSidebarToggle, OpenSidebar }) => {
 
                 <ul className='sidebar-list'>
                     <li className='sidebar-list-item'>
-                        <Link to={'/Dashboard/User'}>
+                        <Link to={'/Dashboard'}>
                             <BsPeopleFill className='icon' />User Details
                         </Link>
                     </li>
                     <li className='sidebar-list-item'>
-                        <Link to={'/Dashboard/User'}>
+                        <Link to={'/Dashboard'}>
                             <BsPeopleFill className='icon' />User Details
                         </Link>
                     </li>

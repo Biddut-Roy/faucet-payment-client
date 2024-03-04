@@ -22,7 +22,7 @@ const Navbar = () => {
             name: user?.name,
             email: user?.email
         }
-        publicAxios.post('http://localhost:5000/jwt', logger)
+        publicAxios.post('jwt', logger)
         .then((res) => {
             console.log(res);
         })
@@ -38,7 +38,7 @@ const Navbar = () => {
             })
            
     } else{
-        publicAxios.post('http://localhost:5000/logout', { withCredentials: true })
+        publicAxios.post('logout', { withCredentials: true })
         .then(res => {
             console.log(res.data);
         })
